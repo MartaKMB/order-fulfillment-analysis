@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document describes the current order fulfillment process of a Polish e-commerce store and identifies potential process bottlenecks and improvement opportunities.
+This document describes the current order fulfillment process of a Polish e-commerce store and identifies operational bottlenecks and improvement opportunities.
 
 ---
 
@@ -39,13 +39,12 @@ The process responsibilities are described using business roles.
 
 In the analyzed organization, all operational activities are currently performed by the store owner.
 
-| Participant                   | Responsibility                                          |
-| ----------------------------- | ------------------------------------------------------- |
-| Customer                      | Places an order and selects payment and shipping method |
-| Sales                         | Receives and handles the order                          |
-| Finance                       | Verifies payment                                        |
-| Warehouse                     | Packs and dispatches the order                          |
-| Payment Provider (Przelewy24) | Confirms online payment                                 |
+| Participant                   | Responsibility                                                                          |
+| ----------------------------- | --------------------------------------------------------------------------------------- |
+| Customer                      | Places an order and selects payment and shipping method                                 |
+| Store Owner                   | Processes orders, verifies payments, prepares shipments and communicates with customers |
+| Payment Provider (Przelewy24) | Confirms online payments                                                                |
+| Shipping Carrier              | Delivers physical products                                                              |
 
 ---
 
@@ -58,11 +57,11 @@ Customers can choose between two payment methods:
 
 ### Przelewy24
 
-The payment confirmation is received automatically from the external payment provider.
+Payment confirmation is received automatically from the external payment provider.
 
 ### Traditional Bank Transfer
 
-The process waits for payment confirmation and requires manual verification.
+Payment requires manual verification.
 
 If payment is not received within 7 days, the order is cancelled.
 
@@ -78,17 +77,31 @@ Available shipping methods:
 
 Orders are packed after successful payment verification.
 
-The current process uses a shared shipment dispatch window aligned with the operational schedule of Poczta Polska.
+The current fulfillment process uses a shared operational workflow for all physical shipments.
 
-Customers receive a shipment notification after the package has been dispatched.
+In practice, shipment preparation and dispatch activities are often aligned with the operational requirements of Poczta Polska, including:
+
+* visiting a physical post office,
+* limited opening hours,
+* manual shipment handling.
+
+As a result, InPost shipments may wait for activities related to Poczta Polska shipments.
 
 ---
 
-## Process Assumptions
+## Supporting Data
 
-The analysis is based on the current operational model of a small e-commerce business.
+Shipment method distribution based on WooCommerce order data:
 
-The BPMN diagram focuses on business activities and process flow rather than organizational structure.
+| Shipment Group                 | Orders |
+| ------------------------------ | -----: |
+| InPost                         |    304 |
+| Poczta Polska                  |    242 |
+| Digital products / no shipping |     78 |
+
+For detailed metrics see:
+
+`docs/metrics.md`
 
 ---
 
@@ -96,33 +109,27 @@ The BPMN diagram focuses on business activities and process flow rather than org
 
 ### Observation 1
 
-The order fulfillment process supports multiple payment methods and shipment providers.
+The process supports multiple payment methods and shipment providers.
 
 ### Observation 2
 
-InPost and Poczta Polska shipments are handled within the same operational shipment flow.
+The process is optimized around a single operational shipment workflow rather than around the capabilities of individual shipment providers.
 
 ### Observation 3
 
 Traditional bank transfers require manual verification and may introduce processing delays.
 
+### Observation 4
+
+Operational requirements related to Poczta Polska can delay InPost shipments.
+
 ---
 
 ## Identified Pain Point
 
-The current process uses a shared shipment dispatch schedule for multiple shipment providers.
+The current shipment process combines multiple shipment providers into a single operational workflow.
 
-This may increase lead time for InPost orders, even though InPost shipments could potentially be dispatched independently from Poczta Polska shipments.
-
----
-
-## Supporting Data
-
-See:
-
-* `docs/metrics.md`
-
-for shipment method distribution based on WooCommerce order data.
+This creates unnecessary waiting time for InPost shipments and increases operational effort.
 
 ---
 
@@ -130,5 +137,5 @@ for shipment method distribution based on WooCommerce order data.
 
 * Can InPost shipments be dispatched independently from Poczta Polska shipments?
 * What operational impact would a separate InPost dispatch flow introduce?
-* Can WooCommerce support separate shipment handling rules for each carrier?
 * What is the average time between payment confirmation and shipment dispatch?
+* How should fulfillment performance be measured after process changes?

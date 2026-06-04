@@ -2,13 +2,13 @@
 
 ## Goal
 
-Reduce shipment lead time for InPost orders by separating InPost dispatch operations from the Poczta Polska shipment schedule.
+Align shipment handling with the actual characteristics of each shipment provider and reduce unnecessary waiting time in the fulfillment process.
 
 ---
 
 ## Background
 
-Analysis of the current fulfillment process identified a shared shipment dispatch flow for multiple shipment providers.
+Analysis of the current process identified a shared shipment workflow for multiple shipment providers.
 
 WooCommerce shipment metrics indicate that:
 
@@ -16,11 +16,13 @@ WooCommerce shipment metrics indicate that:
 * Poczta Polska shipment methods account for approximately 39% of analyzed orders.
 * The remaining orders are digital products or orders without physical shipment requirements.
 
-Despite the significant share of InPost shipments, the current operational process follows a shipment schedule influenced by Poczta Polska handling requirements.
+The current process causes InPost shipments to be influenced by operational activities required for Poczta Polska shipments.
 
 ---
 
-## Proposed Process Change
+## Proposed Change
+
+Separate InPost and Poczta Polska dispatch activities.
 
 ### Current State
 
@@ -29,7 +31,7 @@ InPost shipments
         ↓
 Shared shipment workflow
         ↓
-Poczta Polska shipment window
+Poczta Polska-related activities
 ```
 
 ### Future State
@@ -50,57 +52,33 @@ Dedicated dispatch flow
 
 ### InPost
 
-* Orders paid and packed are dispatched at the next available shipment opportunity.
-* Dispatch is independent from Poczta Polska operational constraints.
+* Orders that are paid and packed can be dispatched at the next available shipment opportunity.
+* Dispatch does not depend on Poczta Polska operational requirements.
 
 ### Poczta Polska
 
-* Existing shipment schedule remains unchanged.
-* Existing operational procedures remain unchanged.
+* Existing shipment procedures remain unchanged.
+* Existing operational constraints remain unchanged.
 
 ---
 
 ## Expected Benefits
 
-| Benefit                           | Description                                                                           |
-| --------------------------------- | --------------------------------------------------------------------------------------|
-| Reduced lead time                 | InPost orders no longer wait for Poczta Polska dispatch activities                    |
-| Faster customer communication     | Shipment notifications can be sent earlier                                            |
-| Better process alignment          | Shipment handling reflects the actual capabilities of each carrier.                   |
-| Simpler prioritization            | High-volume InPost orders can be processed independently from Poczta Polska shipments |
-
----
-
-## Implementation Impact
-
-### Operational Impact
-
-Low.
-
-The proposed solution changes shipment scheduling without changing payment handling, order verification, packaging, or customer communication processes.
-
-### Technical Impact
-
-Low.
-
-No WooCommerce checkout changes are required.
-
-The change primarily affects operational fulfillment procedures.
-
-### Customer Impact
-
-Positive.
-
-Customers selecting InPost should receive shipment confirmation earlier.
+| Benefit                      | Description                                                             |
+| ---------------------------- | ----------------------------------------------------------------------- |
+| Faster InPost dispatch       | InPost shipments no longer wait for Poczta Polska-related activities    |
+| Reduced lead time            | Customers receive shipment confirmation earlier                         |
+| Better process alignment     | Shipment handling reflects the capabilities of each carrier             |
+| Reduced operational friction | Routine Poczta Polska activities have less impact on InPost fulfillment |
 
 ---
 
 ## Risks
 
-| Risk                                      | Impact                                                 | Mitigation                           |
-|-------------------------------------------|--------------------------------------------------------|--------------------------------------|
-| Additional operational effort             | More frequent shipment preparation and dispatch        | Monitor workload and adjust dispatch frequency |
-| Increased process complexity              | Additional shipment handling decisions                 | Define clear shipment handling rules |
+| Risk                                      | Impact                                                 | Mitigation                                      |
+| ----------------------------------------- | ------------------------------------------------------ | ----------------------------------------------- |
+| Additional operational effort             | More frequent shipment preparation and dispatch        | Monitor workload and adjust dispatch frequency  |
+| Increased process complexity              | Additional shipment handling decisions                 | Define clear fulfillment rules                  |
 | Limited benefit during low-volume periods | Faster dispatch may not significantly reduce lead time | Review fulfillment metrics after implementation |
 
 ---
@@ -122,11 +100,11 @@ The following metrics should be monitored after implementation:
 
 The analysis identified several operational challenges related to Poczta Polska:
 
-* manual address handling,
+* manual shipment preparation,
 * limited opening hours,
 * queue waiting time,
-* occasional shipment loss requiring additional customer support effort.
+* additional customer support related to shipment issues.
 
-These observations may justify a separate business analysis evaluating the long-term value of maintaining Poczta Polska as a shipment provider.
+A separate business analysis may be conducted to evaluate whether maintaining Poczta Polska as a shipment option provides sufficient customer value relative to the operational effort required.
 
 This topic is considered outside the scope of the current process improvement initiative.
