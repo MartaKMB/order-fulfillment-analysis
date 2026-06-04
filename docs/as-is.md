@@ -29,7 +29,7 @@ This document describes the current order fulfillment process of a Polish e-comm
 
 ## Process Diagram
 
-![AS-IS BPMN](../diagrams/as-is.png)
+![AS-IS BPMN](../diagrams/as-is-bpmn.png)
 
 ---
 
