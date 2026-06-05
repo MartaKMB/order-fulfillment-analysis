@@ -105,6 +105,14 @@ For detailed metrics see:
 
 ---
 
+## Additional Modeling
+
+The process was additionally modeled using a UML Use Case Diagram to visualize interactions between customers, the store, payment providers and shipment carriers.
+
+![UML Use Case](../diagrams/use-case-diagram-uml.png)
+
+---
+
 ## Key Observations
 
 ### Observation 1
