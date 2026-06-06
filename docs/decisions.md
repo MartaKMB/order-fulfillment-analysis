@@ -55,3 +55,29 @@ BPMN participants are modeled as business roles (Sales, Finance, Warehouse) inst
 * Responsibilities are clearly separated at the process level.
 * The BPMN diagram reflects business capabilities rather than individual staffing arrangements.
 
+---
+
+## Decision 004: Use Multiple Modeling Techniques
+
+### Context
+
+The project aims to analyze the order fulfillment process from both business and system perspectives.
+
+A single modeling notation was not sufficient to describe all aspects of the analyzed process.
+
+BPMN effectively models business workflows and responsibilities, but does not clearly illustrate system interactions or communication between participants.
+
+### Decision
+
+The process is modeled using multiple complementary techniques:
+
+* BPMN for business process flow and responsibilities,
+* UML Use Case Diagram for actor interactions,
+* UML Sequence Diagram for communication between participants and external systems.
+
+### Consequences
+
+* The process can be analyzed from multiple perspectives.
+* Business workflows and system interactions are documented separately.
+* The documentation becomes easier to understand for both business and technical stakeholders.
+* Additional diagrams increase documentation effort but provide a more complete view of the analyzed process.
