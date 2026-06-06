@@ -107,9 +107,39 @@ For detailed metrics see:
 
 ## Additional Modeling
 
-The process was additionally modeled using a UML Use Case Diagram to visualize interactions between customers, the store, payment providers and shipment carriers.
+The AS-IS process was additionally modeled using UML diagrams to provide complementary views of the same business process.
+
+BPMN focuses on the business workflow and operational responsibilities, while UML diagrams help describe system interactions and communication between participants.
+
+### UML Use Case Diagram
+
+The UML Use Case Diagram visualizes the main actors involved in the e-commerce order fulfillment process and their interactions with the online store.
+
+It helps identify who interacts with the system and what goals they are trying to achieve.
 
 ![UML Use Case](../diagrams/use-case-diagram-uml.png)
+
+### UML Sequence Diagram
+
+The UML Sequence Diagram shows how information is exchanged between participants during order fulfillment.
+
+It focuses on communication between:
+
+* Customer
+* WooCommerce Store
+* Przelewy24
+* Store Owner
+* InPost
+* Poczta Polska
+
+The diagram highlights two important process variants:
+
+* payment through Przelewy24 or traditional bank transfer,
+* shipment through InPost or Poczta Polska.
+
+This view helps clarify dependencies between payment confirmation, shipment preparation, shipment dispatch and order completion.
+
+![UML Sequence Diagram](../diagrams/sequence-diagram-uml.png)
 
 ---
 
